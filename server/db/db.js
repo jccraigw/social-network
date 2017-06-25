@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var connectionString = 'mongodb://localhost/home';
+var connectionString = 'mongodb://localhost/wp_user';
 
 
 mongoose.connect(connectionString);
