@@ -1,0 +1,39 @@
+<img src="{{image}}" width="200" height="200">
+
+<h1>{{name}}</h1>
+
+<h2>Title: {{title}}</h2>
+<h2>{{location}}</h2>
+
+<h3>Top Venues</h3>
+<ul>
+	{{#each topVenues}}
+		<li>{{this}}</li>
+
+	{{/each}}
+</ul>
+
+<h3>Inner Circle</h3>
+<ul>
+	{{#each friends}}
+		<li><a href="/profile?id={{this.index}}">{{this.name}}</a></li>
+
+	{{/each}}
+</ul>
+
+{{!-- this button will determine if they are going out and then change the goinout property in object to true or false which will then determin what the feed reads --}}
+<form>
+	<input type="radio" name="In" value="true" > Going Out!!!!<br>
+	<input type="radio" name="Out" value="false"> Staying In :(
+</form>
+<br>
+
+{{#if loggedIn}}
+<h3>Chat</h3>
+<input placeholder="Write on {{name}}'s' wall!"/>
+
+{{/if}}
+
+<br>
+
+<a href="/">Home</a>

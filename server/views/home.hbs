@@ -1,0 +1,27 @@
+<h2>Welcome to Whats Poppin</h2>
+<h3>See what your friends are doing tonight!</h3>
+<p>Never again will you have to wonder if anyone is doing anything or be bothered when you really dont want to do shit!</p>
+
+<h3><a href="/profile?id=0">MyProfile</a></h3>
+<h3>Activity Feed</h3>
+<h4>Going out!</h4>
+<ul>
+	{{#each member}}
+		
+		{{#if goingOut}}
+			<li><a href="/profile?id={{index}}">{{name}}</a></li>
+		{{/if}}
+
+	{{/each}}
+</ul>
+<h4>Not doing shit!</h4>
+<ul>
+	{{#each member}}
+		{{#unless goingOut}}
+			<li><a href="/profile?id={{index}}">{{name}}</a></li>
+		{{/unless}}
+	{{/each}}
+</ul>
+
+
+<a href="/join">Join Whats Poppin</a>
