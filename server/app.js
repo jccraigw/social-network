@@ -15,6 +15,9 @@ app.set('views', path.join(__dirname, 'views'));
 //tell express that we are using handlebars as our view engin
 app.set('view engine', 'hbs');
 
+//connect to database
+require('./db/db.js');
+
 var database = [
 	{name: "Justin Graham",index: 0, title: "Consultant", location: "Chicago", image: "", topVenues: ["Bar Deville", "Slipper Slope", "East Room"], friends: [{name: "Julian", index: 1}, {name: "Jeannetta", index: 2}], loggedIn: true, goingOut: true},
 	{name: "Julian Graham",index: 1, title: "Student", location: "Chicago", image: "", topVenues: ["Beauty Bar", "Bar Deville", "Slipper Slope"], friends: [{name: "Justin", index: 0}, {name: "Jeannetta", index: 2}],loggedIn: true, goingOut: true},
@@ -25,7 +28,7 @@ var database = [
 
 
 
-app.get('/', function(req, res){
+app.get('/home', function(req, res){
 
 	
 
