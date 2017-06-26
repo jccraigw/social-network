@@ -6,19 +6,19 @@
 <h3>Activity Feed</h3>
 <h4>Going out!</h4>
 <ul>
-	{{#each member}}
+	{{#each users}}
 		
-		{{#if goingOut}}
-			<li><a href="/profile?id={{index}}">{{name}}</a></li>
+		{{#if going}}
+			<li><a href="{{!-- /profile?id={{index}} --}}#">{{this.name}}</a></li>
 		{{/if}}
 
 	{{/each}}
 </ul>
 <h4>Not doing shit!</h4>
 <ul>
-	{{#each member}}
-		{{#unless goingOut}}
-			<li><a href="/profile?id={{index}}">{{name}}</a></li>
+	{{#each users}}
+		{{#unless going}}
+			<li><a href="{{!-- /profile?id={{index}} --}}#">{{this.name}}</a></li>
 		{{/unless}}
 	{{/each}}
 </ul>

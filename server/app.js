@@ -33,17 +33,17 @@ var database = [
 
 	]
 
-// app.get('/', function(req, res){
-// 	User.find(function(err, wines){
-
-// 		var allWines = {wines: wines};
-// 		console.log(allWines);
-// 		res.render('home', allWines);
-// 	})
-	
-// })
-
 app.get('/home', function(req, res){
+	User.find(function(err, users){
+
+		var allUsers = {users: users};
+		console.log(allUsers);
+		res.render('home', allUsers);
+	})
+	
+})
+
+app.get('/home/:id', function(req, res){
 
 	
 
