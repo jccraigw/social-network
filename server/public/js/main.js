@@ -4,6 +4,8 @@ $('#join').on('click', function(){
 	//grab the values in the input field
 	//right now only grabing what is relevant to user model...might modify later
 	var name = $('#name').val();
+	var email = $('#email').val();
+	var password = $('#password').val();
 	var title = $('#title').val();
 	var location = $('#location').val();
 	var image = $('#img').val();
@@ -15,6 +17,8 @@ $('#join').on('click', function(){
 
 	//build object with the corresponding keys
 	var newUser = {name: name,
+					email: email,
+					password: password,
 					title: title,
 					location: location,
 					image: image,

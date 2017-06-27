@@ -7,6 +7,9 @@ var app = express();
 var server = require('http').createServer(app);
 var path = require('path');
 
+//require express session to authenticate user
+var session = require('express-session');
+
 //get parameters from body
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -25,84 +28,20 @@ require('./db/db.js');
 //connect to the model
 var User = require('./models/User.js');
 
-
-app.get('/', function(req, res){
-	User.find(function(err, users){
-
-		var allUsers = {users: users};
-		console.log(allUsers);
-		res.render('home', allUsers);
-	})
-	
-})
-
-app.get('/profile/:id', function(req, res){
-
-	var id = req.params.id;
-	User.findById(id, function(err, users){
-
-		console.log(err);
-		res.render('profile', users);
-	})
-	
-})
-
-app.get('/join', function(req, res){
-
-	res.render('join');
-})
-
-app.post('/join', function(req, res){
-
-	console.log(req.body);
-	var user = new User({
-		name: req.body.name,
-		title: req.body.title,
-		location: req.body.location,
-		image: req.body.image,
-		venues: req.body.venues,
-		friends: req.body.friends,
-		logged: req.body.logged,
-		going: req.body.going
-
-	})
-
-	user.save();
-	res.send('success');
-})
+app.use(session({
+		secret: "shhh, I'm a password",
+		resave: false,
+		saveUninitialized: true,
+		cookie: {secure: false}
 
 
-app.patch('/profile/:id', function(req, res){
+}));
 
-	 var id = req.params.id;
-	 User.findById(id, function(err, users){
-		users.name = req.body.name;
-    	users.title = req.body.title;
-    	users.location = req.body.location;
-    	users.image = req.body.image;
-    	users.venues = req.body.venues;
-    	//check if find by property to add ids with name
-    	users.friends = req.body.friends;
-    	users.logged = req.body.logged;
-    	users.going = req.body.going;
-    	users.save();
-    	res.render('profile', users);
-	 })
+//connect to controller
+var UserController = require('./controllers/UserController');
 
-	
+app.use('/', UserController);
 
-})
-
-app.delete('/profile/:id', function(req, res){
-
-	var id = req.params.id;
-  	User.findById(id, function(err, users){
-    users.remove();
-    res.json("success");
-    //need to send to back to home screen after this
-  })
-
-})
 
 
 
