@@ -13,6 +13,12 @@ router.get('/', function(req, res){
   res.render('login');
 })
 
+router.get('/error', function(req, res){
+	var error_message ={error: "hahahah"};
+
+  res.render('login', error_message);
+})
+
 
 router.get('/join', function(req, res){
 
@@ -92,6 +98,7 @@ router.post('/', function(request, response){
     //
     User.findOne({email: request.body.email}, function(error, user){
 
+    	
         //check if there is a user that was returned from the DB
         if(user){
           bcrypt.compare(request.body.password, user.password, function(error, match){
@@ -109,7 +116,7 @@ router.post('/', function(request, response){
 
         }else{
 
-          response.redirect('/');
+          response.redirect('/error');
         }
 
     })
