@@ -81,6 +81,7 @@ app.patch('/profile/:id', function(req, res){
     	users.location = req.body.location;
     	users.image = req.body.image;
     	users.venues = req.body.venues;
+    	//check if find by property to add ids with name
     	users.friends = req.body.friends;
     	users.logged = req.body.logged;
     	users.going = req.body.going;
@@ -98,6 +99,7 @@ app.delete('/profile/:id', function(req, res){
   	User.findById(id, function(err, users){
     users.remove();
     res.json("success");
+    //need to send to back to home screen after this
   })
 
 })
