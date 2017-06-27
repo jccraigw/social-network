@@ -92,9 +92,13 @@ app.patch('/profile/:id', function(req, res){
 
 })
 
-app.delete('/', function(req, res){
+app.delete('/profile/:id', function(req, res){
 
-	
+	var id = req.params.id;
+  	User.findById(id, function(err, users){
+    users.remove();
+    res.json("success");
+  })
 
 })
 
