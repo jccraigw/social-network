@@ -4,6 +4,7 @@ var User = require('../models/User');
 var bodyParser = require('body-parser');
 var bcrypt = require('bcrypt');
 var session = require('express-session');
+var currentID;
 
 router.use(bodyParser.urlencoded({extended: true}));
 
@@ -21,7 +22,9 @@ router.get('/join', function(req, res){
 router.get('/home', function(req, res){
 	User.find(function(err, users){
 
-		var allUsers = {users: users};
+		var allUsers = {users: users,
+						id: currentID
+						};
 		console.log(allUsers);
 
 		if(req.session.loggedIn === true){
@@ -40,8 +43,10 @@ router.get('/profile/:id', function(req, res){
 	var id = req.params.id;
 	User.findById(id, function(err, users){
 
+		var currentSession = {users: users,
+								id: id}
 		console.log(err);
-		res.render('profile', users);
+		res.render('profile', currentSession);
 	})
 	
 })
@@ -77,7 +82,7 @@ router.post('/join', function(req, res){
   })
 
 	
-	res.redirect('/home');
+	res.redirect('/');
 })
 
 router.post('/', function(request, response){
@@ -90,9 +95,11 @@ router.post('/', function(request, response){
         //check if there is a user that was returned from the DB
         if(user){
           bcrypt.compare(request.body.password, user.password, function(error, match){
-          	
+
             if(match === true){
               request.session.loggedIn = true;
+              currentID = user._id;
+              console.log(currentID);
               response.redirect('/home');
             }else{
 

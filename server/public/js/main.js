@@ -35,6 +35,7 @@ $('#join').on('click', function(){
 		data: newUser,
 		success: function(response){
 
+			//find out how to redirect
 			window.location.reload();
 		}
 

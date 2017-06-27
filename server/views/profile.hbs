@@ -1,13 +1,13 @@
 <img src="{{image}}" width="200" height="200">
 
-<h1>{{name}}</h1>
+<h1>{{users.name}}</h1>
 
-<h2>Title: {{title}}</h2>
-<h2>{{location}}</h2>
+<h2>Title: {{users.title}}</h2>
+<h2>{{users.location}}</h2>
 
 <h3>Top Venues</h3>
 <ul>
-	{{#each venues}}
+	{{#each users.venues}}
 		<li>{{this}}</li>
 
 	{{/each}}
@@ -17,7 +17,7 @@
 <ul>
 
 		
-			{{#each friends}}
+			{{#each users.friends}}
 			<li><a href="/profile/{{this.id}}">{{this.name}}</a></li>
 
 		{{/each}}
@@ -30,9 +30,9 @@
 </form>
 <br>
 
-{{#if logged}}
+{{#if users.logged}}
 <h3>Chat</h3>
-<input placeholder="Write on {{name}}'s' wall!"/>
+<input placeholder="Write on {{users.name}}'s' wall!"/>
 
 {{/if}}
 
