@@ -7,7 +7,18 @@ var UserSchema = new mongoose.Schema({
 	location: String,
 	image: String,
 	venues: Array,
-	friends: Array,
+	friends: [{
+			id: String,
+			name: String
+			},
+			{
+			id: String,
+			name: String
+			},
+			{
+			id: String,
+			name: String
+			}],
 	logged: Boolean,
 	going: Boolean
 

@@ -2,14 +2,14 @@
 <h3>See what your friends are doing tonight!</h3>
 <p>Never again will you have to wonder if anyone is doing anything or be bothered when you really dont want to do shit!</p>
 
-<h3><a href="/profile?id=0">MyProfile</a></h3>
+<h3><a href="{{!-- /profile/{{this._id}} --}}#">MyProfile</a></h3>
 <h3>Activity Feed</h3>
 <h4>Going out!</h4>
 <ul>
 	{{#each users}}
 		
 		{{#if going}}
-			<li><a href="{{!-- /profile?id={{index}} --}}#">{{this.name}}</a></li>
+			<li><a href="/profile/{{this._id}}">{{this.name}}</a></li>
 		{{/if}}
 
 	{{/each}}
@@ -18,7 +18,7 @@
 <ul>
 	{{#each users}}
 		{{#unless going}}
-			<li><a href="{{!-- /profile?id={{index}} --}}#">{{this.name}}</a></li>
+			<li><a href="profile/{{this._id}}">{{this.name}}</a></li>
 		{{/unless}}
 	{{/each}}
 </ul>

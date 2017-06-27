@@ -7,7 +7,7 @@
 
 <h3>Top Venues</h3>
 <ul>
-	{{#each topVenues}}
+	{{#each venues}}
 		<li>{{this}}</li>
 
 	{{/each}}
@@ -15,10 +15,12 @@
 
 <h3>Inner Circle</h3>
 <ul>
-	{{#each friends}}
-		<li><a href="/profile?id={{this.index}}">{{this.name}}</a></li>
 
-	{{/each}}
+		
+			{{#each friends}}
+			<li><a href="/profile/{{this.id}}">{{this.name}}</a></li>
+
+		{{/each}}
 </ul>
 
 {{!-- this button will determine if they are going out and then change the goinout property in object to true or false which will then determin what the feed reads --}}
@@ -28,7 +30,7 @@
 </form>
 <br>
 
-{{#if loggedIn}}
+{{#if logged}}
 <h3>Chat</h3>
 <input placeholder="Write on {{name}}'s' wall!"/>
 

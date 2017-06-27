@@ -25,15 +25,8 @@ require('./db/db.js');
 //connect to the model
 var User = require('./models/User.js');
 
-var database = [
-	{name: "Justin Graham",index: 0, title: "Consultant", location: "Chicago", image: "", topVenues: ["Bar Deville", "Slipper Slope", "East Room"], friends: [{name: "Julian", index: 1}, {name: "Jeannetta", index: 2}], loggedIn: true, goingOut: true},
-	{name: "Julian Graham",index: 1, title: "Student", location: "Chicago", image: "", topVenues: ["Beauty Bar", "Bar Deville", "Slipper Slope"], friends: [{name: "Justin", index: 0}, {name: "Jeannetta", index: 2}],loggedIn: true, goingOut: true},
-	{name: "Jeannetta Graham",index: 2, title: "Lawyer", location: "Chicago", image: "", topVenues: ["Bar Deville", "Studio Paris", "Underground"], friends: [{name: "Julian", index: 1}, {name: "Justin", index: 0}],loggedIn: true, goingOut: false}
 
-
-	]
-
-app.get('/home', function(req, res){
+app.get('/', function(req, res){
 	User.find(function(err, users){
 
 		var allUsers = {users: users};
@@ -43,20 +36,15 @@ app.get('/home', function(req, res){
 	
 })
 
-app.get('/home/:id', function(req, res){
+app.get('/profile/:id', function(req, res){
 
+	var id = req.params.id;
+	User.findById(id, function(err, users){
+
+		console.log(err);
+		res.render('profile', users);
+	})
 	
-
-	var people = {member: database};
-
-	res.render('home', people);
-})
-
-app.get('/profile', function(req, res){
-
-	var index = req.query.id;
-	var person = database[index];
-	res.render('profile', person);
 })
 
 app.get('/join', function(req, res){
@@ -82,6 +70,36 @@ app.post('/join', function(req, res){
 	user.save();
 	res.send('success');
 })
+
+
+app.patch('/profile/:id', function(req, res){
+
+	 var id = req.params.id;
+	 User.findById(id, function(err, users){
+		users.name = req.body.name;
+    	users.title = req.body.title;
+    	users.location = req.body.location;
+    	users.image = req.body.image;
+    	users.venues = req.body.venues;
+    	users.friends = req.body.friends;
+    	users.logged = req.body.logged;
+    	users.going = req.body.going;
+    	users.save();
+    	res.render('profile', users);
+	 })
+
+	
+
+})
+
+app.delete('/', function(req, res){
+
+	
+
+})
+
+
+
 
 
 server.listen(3000, function(){
