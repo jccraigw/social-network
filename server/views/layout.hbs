@@ -7,6 +7,9 @@
 </head>
 <body>
 	<h1>Whats Poppin</h1>
+	{{#if loggedIn}}
+		<a href="/logout">Logout</a>
+	{{/if}}
 	{{{body}}}
 
  <script src="/js/main.js"></script>

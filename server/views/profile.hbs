@@ -24,11 +24,14 @@
 </ul>
 
 {{!-- this button will determine if they are going out and then change the goinout property in object to true or false which will then determin what the feed reads --}}
-<form>
-	<input type="radio" name="In" value="true" > Going Out!!!!<br>
-	<input type="radio" name="Out" value="false"> Staying In :(
-</form>
+
+{{#if current}}
+<label class="switch">
+  <input id="status" type="checkbox">
+  <div class="slider round"></div>
+</label>
 <br>
+{{/if}}
 
 {{#if users.logged}}
 <h3>Chat</h3>

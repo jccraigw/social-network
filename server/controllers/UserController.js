@@ -12,7 +12,7 @@ router.get('/', function(req, res){
 
   res.render('login');
 })
-
+//puts error on login page using /error route
 router.get('/error', function(req, res){
 	var error_message ={error: "hahahah"};
 
@@ -29,9 +29,10 @@ router.get('/home', function(req, res){
 	User.find(function(err, users){
 
 		var allUsers = {users: users,
-						id: currentID
+						id: currentID,
+						loggedIn: true
 						};
-		console.log(allUsers);
+		//console.log(allUsers);
 
 		if(req.session.loggedIn === true){
       res.render('home', allUsers);
@@ -47,14 +48,37 @@ router.get('/home', function(req, res){
 router.get('/profile/:id', function(req, res){
 
 	var id = req.params.id;
+
+	console.log(id);
+	console.log(currentID);
+
+
 	User.findById(id, function(err, users){
 
+		if(id == currentID){
+
+			var isUser = true;
+		}else{
+
+			var isUser = false;
+		}
+
+		console.log(isUser);
 		var currentSession = {users: users,
-								id: id}
+								id: currentID,
+								current: isUser,
+							 loggedIn: true}
 		console.log(err);
 		res.render('profile', currentSession);
 	})
 	
+})
+
+//post request to /logout
+router.get('/logout', function(request, response){
+
+  request.session.loggedIn = false;
+  response.redirect('/');
 })
 
 router.post('/join', function(req, res){
@@ -87,8 +111,8 @@ router.post('/join', function(req, res){
 
   })
 
+	res.send("success");
 	
-	res.redirect('/');
 })
 
 router.post('/', function(request, response){
@@ -110,7 +134,7 @@ router.post('/', function(request, response){
               response.redirect('/home');
             }else{
 
-              response.redirect('/');
+              response.redirect('/error');
             }
           })
 
@@ -126,19 +150,34 @@ router.post('/', function(request, response){
 router.patch('/profile/:id', function(req, res){
 
 	 var id = req.params.id;
-	 User.findById(id, function(err, users){
-		users.name = req.body.name;
-    	users.title = req.body.title;
-    	users.location = req.body.location;
-    	users.image = req.body.image;
-    	users.venues = req.body.venues;
-    	//check if find by property to add ids with name
-    	users.friends = req.body.friends;
-    	users.logged = req.body.logged;
-    	users.going = req.body.going;
-    	users.save();
-    	res.render('profile', users);
-	 })
+	 // User.findById(id, function(err, users){
+		// users.name = req.body.name;
+  //   	users.title = req.body.title;
+  //   	users.location = req.body.location;
+  //   	users.image = req.body.image;
+  //   	users.venues = req.body.venues;
+  //   	//check if find by property to add ids with name
+  //   	users.friends = req.body.friends;
+  //   	users.logged = req.body.logged;
+  //   	users.going = req.body.going;
+  //   	users.save();
+  //   	res.render('profile', users);
+	 // })
+
+	 var status = req.body.going;
+
+	 console.log(status);
+	 User.update({_id: id},{
+
+	 		going: status
+
+
+	 	}, function(err, affected, res){
+
+	 		console.log(res);
+	 	}
+
+	 )
 
 	
 

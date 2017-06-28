@@ -36,7 +36,7 @@ $('#join').on('click', function(){
 		success: function(response){
 
 			//find out how to redirect
-			window.location.reload();
+			window.location.href = "http://localhost:3000/";
 		}
 
 
@@ -44,3 +44,34 @@ $('#join').on('click', function(){
 
 
 });
+
+  $('#status').on('click', function(){
+
+  		var status = false;
+  		if ($('#status').is(":checked"))
+			{
+  				console.log("on")
+  				status = true;
+		}else{
+
+			console.log('off');
+			status = false;
+		}
+
+		console.log(status)
+
+		$.ajax({
+			
+		method: "PATCH",
+		url: window.location.pathname,
+		data: status,
+		success: function(response){
+
+			//find out how to redirect
+			//window.location.reload();
+		}
+
+
+	});
+
+  })
