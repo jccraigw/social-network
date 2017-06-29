@@ -144,6 +144,7 @@ router.post('/', function(request, response){
               request.session.loggedIn = true;
               currentID = user._id;
               currentName = user.name;
+              request.session.loggedName = currentName;
 
               console.log(currentID);
               response.redirect('/home');

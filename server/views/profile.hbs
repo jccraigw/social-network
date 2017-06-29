@@ -8,7 +8,8 @@
 			<div class="user">{{users.name}}</div>
 			<a href="/home">Home</a>
 		</div>
-		<img src="{{image}}" width="200" height="200">
+		{{image}}
+		<img src="{{users.image}}" width="200" height="200">
 		{{#if current}}
 			{{!-- {{users.going}} --}}
 			{{#if users.going}}
@@ -77,7 +78,7 @@
 			<button>Submit</button>
 			</form>
 			
-			<p>{{currentName}}:<br>
+			<p>
 			<div class="chat_text">
 				{{#each users.posts}}
 					{{this.text}} <br>
