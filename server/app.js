@@ -27,6 +27,7 @@ require('./db/db.js');
 
 //connect to the model
 var User = require('./models/User.js');
+var Post = require('./models/Post.js');
 
 app.use(session({
 		secret: "shhh, I'm a password",
@@ -39,8 +40,11 @@ app.use(session({
 
 //connect to controller
 var UserController = require('./controllers/UserController');
+var PostController = require('./controllers/PostController');
 
 app.use('/', UserController);
+app.use('/post', PostController);
+
 
 
 

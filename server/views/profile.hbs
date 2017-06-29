@@ -1,44 +1,95 @@
-<img src="{{image}}" width="200" height="200">
+<div class="profile_main">	
 
-<h1>{{users.name}}</h1>
+	<div class="status">
 
-<h2>Title: {{users.title}}</h2>
-<h2>{{users.location}}</h2>
 
-<h3>Top Venues</h3>
-<ul>
-	{{#each users.venues}}
-		<li>{{this}}</li>
+		<div class="name">
+	
+			<div class="user">{{users.name}}</div>
+			<a href="/home">Home</a>
+		</div>
+		<img src="{{image}}" width="200" height="200">
+		{{#if current}}
+			{{!-- {{isGoing}} --}}
+			{{#if isGoing}}
+				<label class="switch">
+					  <input id="status" type="checkbox" checked>
+					  <div class="slider round"></div>
+					</label>
+					<br>
+			{{else}}
+					<label class="switch">
+					 <input id="status" type="checkbox">
+					  <div class="slider round"></div>
+					</label>
+					<br>
+			{{/if}}
+		{{/if}}
 
-	{{/each}}
-</ul>
 
-<h3>Inner Circle</h3>
-<ul>
+	</div>
 
-		
-			{{#each users.friends}}
-			<li><a href="/profile/{{this.id}}">{{this.name}}</a></li>
+	
+	<div class="profile_wrapper">
+		<div class="profile_text">	
+			<div class="profile_col">
+				<div class="profile_header">{{users.title}}</div>
+			</div>
+			<div class="profile_col">
+				<div class="profile_header">{{users.location}}</div>
+			</div>
+			<div class="profile_col">
+				<div class="profile_header">Top Venues:</div>
+			</div>
+				<ul>
+					{{#each users.venues}}
+						<li>{{this}}</li>
 
-		{{/each}}
-</ul>
+					{{/each}}
+				</ul>
+			
+		</div>
+		{{!-- 
+		<h3>Inner Circle</h3>
+		<ul>
 
-{{!-- this button will determine if they are going out and then change the goinout property in object to true or false which will then determin what the feed reads --}}
+				
+					{{#each users.friends}}
+					<li><a href="/profile/{{this.id}}">{{this.name}}</a></li>
 
-{{#if current}}
-<label class="switch">
-  <input id="status" type="checkbox">
-  <div class="slider round"></div>
-</label>
-<br>
-{{/if}}
+				{{/each}}
+		</ul> --}}
 
-{{#if users.logged}}
-<h3>Chat</h3>
-<input placeholder="Write on {{users.name}}'s' wall!"/>
+		{{!-- this button will determine if they are going out and then change the goinout property in object to true or false which will then determin what the feed reads --}}
 
-{{/if}}
+		{{!-- 
+		{{#if users.logged}}
+		<h3>Chat</h3>
+		<input placeholder="Write on {{users.name}}'s' wall!"/>
 
-<br>
+		{{/if}}
+		 --}}
+		 <div class="chat">
+			 <form action="/post" method="POST">
+			<input name="text" placeholder="Type your post here"/>
+			<input name="userId" value="{{id_page}}" type="hidden" />
+			<button>Submit</button>
+			</form>
+			
+			<p>{{currentName}}:<br>
+			<div class="chat_text">
+				{{#each users.posts}}
+					{{this.text}} <br>
+				{{/each}}
+			</div>
+			</p>
+			<br>
+		</div>
+	</div>
 
-<a href="/home">Home</a>
+	<br>
+	{{!-- <button id="delete">Delete Profile</button> --}}
+	{{!-- <form action="/profile/{{id}}" method="DELETE">
+	<button>Submit</button>
+	</form> --}}
+</div>

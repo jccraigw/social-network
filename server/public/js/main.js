@@ -52,11 +52,18 @@ $('#join').on('click', function(){
 			{
   				console.log("on")
   				status = true;
+  				$('#status').prop('checked', true);
+  				
 		}else{
 
 			console.log('off');
 			status = false;
+			$('#status').prop('checked', false);
 		}
+
+
+
+		var stat ={going: status};
 
 		console.log(status)
 
@@ -64,7 +71,7 @@ $('#join').on('click', function(){
 			
 		method: "PATCH",
 		url: window.location.pathname,
-		data: status,
+		data: stat,
 		success: function(response){
 
 			//find out how to redirect
@@ -75,3 +82,19 @@ $('#join').on('click', function(){
 	});
 
   })
+
+ //  $('#delete').on('click', function(){
+
+ //  		$.ajax({	
+	// 	method: "DELETE",
+	// 	url: window.location.pathname,
+	// 	success: function(response){
+
+	// 		//find out how to redirect
+	// 		// window.location.href = "http://localhost:3000/";
+	// 	}
+
+
+	// });
+
+ //  });

@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var bcrypt = require('bcrypt');
 var session = require('express-session');
 var currentID;
+var currentStatus;
+var currentName;
 
 router.use(bodyParser.urlencoded({extended: true}));
 
@@ -14,7 +16,7 @@ router.get('/', function(req, res){
 })
 //puts error on login page using /error route
 router.get('/error', function(req, res){
-	var error_message ={error: "hahahah"};
+	var error_message ={error: "HAHAHA!"};
 
   res.render('login', error_message);
 })
@@ -30,8 +32,8 @@ router.get('/home', function(req, res){
 
 		var allUsers = {users: users,
 						id: currentID,
-						loggedIn: true
-						};
+						loggedIn: true,
+						isGoing: currentStatus};
 		//console.log(allUsers);
 
 		if(req.session.loggedIn === true){
@@ -52,9 +54,11 @@ router.get('/profile/:id', function(req, res){
 	console.log(id);
 	console.log(currentID);
 
+	var id_page = req.params.id;
 
-	User.findById(id, function(err, users){
 
+	User.findById(id).populate('posts').exec(function(err, users){
+		console.log(users);
 		if(id == currentID){
 
 			var isUser = true;
@@ -63,14 +67,17 @@ router.get('/profile/:id', function(req, res){
 			var isUser = false;
 		}
 
-		console.log(isUser);
+		console.log("getcurrent status: " + currentStatus);
 		var currentSession = {users: users,
 								id: currentID,
 								current: isUser,
-							 loggedIn: true}
+							   loggedIn: true,
+							   id_page: id_page,
+							   currentName: currentName,
+								isGoing: currentStatus }
 		console.log(err);
 		res.render('profile', currentSession);
-	})
+	});
 	
 })
 
@@ -130,6 +137,8 @@ router.post('/', function(request, response){
             if(match === true){
               request.session.loggedIn = true;
               currentID = user._id;
+              currentName = user.name;
+
               console.log(currentID);
               response.redirect('/home');
             }else{
@@ -165,15 +174,13 @@ router.patch('/profile/:id', function(req, res){
 	 // })
 
 	 var status = req.body.going;
+	 currentStatus = status;
 
-	 console.log(status);
-	 User.update({_id: id},{
-
-	 		going: status
+	 console.log("status:" + status);
+	 User.update({_id: id}, req.body, function(err, affected, res){
 
 
-	 	}, function(err, affected, res){
-
+	 		
 	 		console.log(res);
 	 	}
 
@@ -188,7 +195,7 @@ router.delete('/profile/:id', function(req, res){
 	var id = req.params.id;
   	User.findById(id, function(err, users){
     users.remove();
-    res.json("success");
+    res.redirect('/');
     //need to send to back to home screen after this
   })
 

@@ -1,17 +1,19 @@
-<h2>Welcome to Whats Poppin</h2>
-<h3>See what your friends are doing tonight!</h3>
-<p>Never again will you have to wonder if anyone is doing anything or be bothered when you really dont want to do shit!</p>
+<h3>Welcome!</h3>
+{{!-- <p>Never again wonder or be bothered.</p> --}}
 
-<h2>Login here:</h2>
+<p>See what your friends are doing tonight.<p>
 
-{{!-- static form submission --}}
-<form action="/" method="POST">
+<div class="login">
+	
 
-	<h4>{{error}}</h4>
-	<input name="email"placeholder="Email"/>
-	<input name="password" placeholder="Password"/>
-	<button>Submit</button>
-</form>
+	{{!-- static form submission --}}
+	<form id="login_form" action="/" method="POST">
 
+		<h4>{{error}}</h4>
+		<input name="email"placeholder="Email"/>
+		<input name="password" placeholder="Password"/>
+		<button>Submit</button>
+		<a href="/join">Join</a>
+	</form>
+</div>
 <br>
-<a href="/join">Join Whats Poppin</a>

@@ -3,15 +3,39 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="/styles/style.css">
+		<link href="https://fonts.googleapis.com/css?family=Six+Caps" rel="stylesheet">
+
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 <body>
-	<h1>Whats Poppin</h1>
-	{{#if loggedIn}}
-		<a href="/logout">Logout</a>
-	{{/if}}
-	{{{body}}}
+	<div class="wrapper">
+		<div class="header_wrapper">
+			<div class="header">
+				<div class="header_text">
+					<div class="profile">
+						{{#if loggedIn}}
+							<a href="/profile/{{id}}">My Profile</a>
+						{{/if}}
+					</div>	
+					<div class="title_wrapper">
 
+						<h1 id="title">Whats Poppin</h1>
+					</div>
+					<div class="logout">
+						{{#if loggedIn}}
+							<a href="/logout">Logout</a>
+						{{/if}}
+					</div>
+				</div>	
+			</div>
+		</div>
+		<div class="main_wrapper">
+			{{{body}}}
+		</div>
+	</div>
  <script src="/js/main.js"></script>
 </body>
 </html>

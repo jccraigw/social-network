@@ -22,9 +22,10 @@ var UserSchema = new mongoose.Schema({
 			name: String
 			}],
 	logged: Boolean,
-	going: Boolean
+	going: Boolean,
+	posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
 
-})
+});
 
 var userModel = mongoose.model('User', UserSchema);
 

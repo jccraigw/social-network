@@ -1,29 +1,29 @@
-<h2>Welcome to Whats Poppin</h2>
-<h3>See what your friends are doing tonight!</h3>
-<p>Never again will you have to wonder if anyone is doing anything or be bothered when you really dont want to do shit!</p>
 
-<h3><a href="/profile/{{id}}">MyProfile</a></h3>
-<h3>Activity Feed</h3>
-<h4>Going out!</h4>
-<ul>
-	{{#each users}}
-		
-		{{#if going}}
-			<li><a href="/profile/{{this._id}}">{{this.name}}</a></li>
-		{{/if}}
+<div class="home_wrapper">
+	{{!-- <h3><a href="/profile/{{id}}">My Profile</a></h3> --}}
+	<div class="activity">
+		<h3>Activity Feed</h3>
+		<h4>Going out!</h4>
+		<ul style="list-style: none;">
+			{{#each users}}
+				
+				{{#if going}}
+					<li><a href="/profile/{{this._id}}">{{this.name}}</a></li>
+				{{/if}}
 
-	{{/each}}
-</ul>
-<h4>Not doing shit!</h4>
-<ul>
-	{{#each users}}
-		{{#unless going}}
-			<li><a href="profile/{{this._id}}">{{this.name}}</a></li>
-		{{/unless}}
-	{{/each}}
-</ul>
+			{{/each}}
+		</ul >
+		<h4>Not doing shit!</h4>
+		<ul style="list-style: none;">
+			{{#each users}}
+				{{#unless going}}
+					<li><a href="profile/{{this._id}}">{{this.name}}</a></li>
+				{{/unless}}
+			{{/each}}
+		</ul>
+	</div>
+</div>
 
 
-<a href="/join">Join Whats Poppin</a>
 
 
