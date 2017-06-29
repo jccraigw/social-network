@@ -10,14 +10,15 @@
 		</div>
 		<img src="{{image}}" width="200" height="200">
 		{{#if current}}
-			{{!-- {{isGoing}} --}}
-			{{#if isGoing}}
+			{{!-- {{users.going}} --}}
+			{{#if users.going}}
 				<label class="switch">
 					  <input id="status" type="checkbox" checked>
 					  <div class="slider round"></div>
 					</label>
 					<br>
 			{{else}}
+					{{going}}
 					<label class="switch">
 					 <input id="status" type="checkbox">
 					  <div class="slider round"></div>
@@ -71,7 +72,7 @@
 		 --}}
 		 <div class="chat">
 			 <form action="/post" method="POST">
-			<input name="text" placeholder="Type your post here"/>
+			<input name="text" placeholder="Type your post here"style="width: 300px;"/>
 			<input name="userId" value="{{id_page}}" type="hidden" />
 			<button>Submit</button>
 			</form>

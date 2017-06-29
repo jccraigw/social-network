@@ -76,7 +76,13 @@ router.get('/profile/:id', function(req, res){
 							   currentName: currentName,
 								isGoing: currentStatus }
 		console.log(err);
+
+		if(req.session.loggedIn === true){
 		res.render('profile', currentSession);
+		}else{
+
+      	res.redirect('/');
+    	 }
 	});
 	
 })
@@ -159,19 +165,7 @@ router.post('/', function(request, response){
 router.patch('/profile/:id', function(req, res){
 
 	 var id = req.params.id;
-	 // User.findById(id, function(err, users){
-		// users.name = req.body.name;
-  //   	users.title = req.body.title;
-  //   	users.location = req.body.location;
-  //   	users.image = req.body.image;
-  //   	users.venues = req.body.venues;
-  //   	//check if find by property to add ids with name
-  //   	users.friends = req.body.friends;
-  //   	users.logged = req.body.logged;
-  //   	users.going = req.body.going;
-  //   	users.save();
-  //   	res.render('profile', users);
-	 // })
+
 
 	 var status = req.body.going;
 	 currentStatus = status;

@@ -82,7 +82,7 @@ a:active {
   flex-grow: 1;
 }
 .profile_main {
-  margin-top: 0px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -123,6 +123,7 @@ a:active {
 }
 .chat {
   flex-grow: 1;
+  border: 2px solid #EFEEEE;
 }
 /* Hide default HTML checkbox */
 .switch input {

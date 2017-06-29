@@ -47,7 +47,7 @@ $('#join').on('click', function(){
 
   $('#status').on('click', function(){
 
-  		var status = false;
+  		var status;
   		if ($('#status').is(":checked"))
 			{
   				console.log("on")
@@ -58,7 +58,7 @@ $('#join').on('click', function(){
 
 			console.log('off');
 			status = false;
-			$('#status').prop('checked', false);
+			$('#status').prop('', false);
 		}
 
 
@@ -83,18 +83,3 @@ $('#join').on('click', function(){
 
   })
 
- //  $('#delete').on('click', function(){
-
- //  		$.ajax({	
-	// 	method: "DELETE",
-	// 	url: window.location.pathname,
-	// 	success: function(response){
-
-	// 		//find out how to redirect
-	// 		// window.location.href = "http://localhost:3000/";
-	// 	}
-
-
-	// });
-
- //  });
