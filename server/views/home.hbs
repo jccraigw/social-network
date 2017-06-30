@@ -3,24 +3,33 @@
 	{{!-- <h3><a href="/profile/{{id}}">My Profile</a></h3> --}}
 	<div class="activity">
 		<h3>ACTIVITY FEED</h3>
-		<h4>Going out! :)</h4>
-		<ul style="list-style: none;">
-			{{#each users}}
-				
-				{{#if going}}
-					<li><a href="/profile/{{this._id}}">{{this.name}}</a></li>
-				{{/if}}
+	
+		<div class="feed_wrapper">
+			<div class="feed_yes">	
+				<h4>Going out! :)</h4>
+				<hr>
+				<ul style="list-style: none;">
+					{{#each users}}
+						
+						{{#if going}}
+							<li><a href="/profile/{{this._id}}">{{this.name}}</a></li>
+						{{/if}}
 
-			{{/each}}
-		</ul >
-		<h4>Not doing shit! :(</h4>
-		<ul style="list-style: none;">
-			{{#each users}}
-				{{#unless going}}
-					<li><a href="profile/{{this._id}}">{{this.name}}</a></li>
-				{{/unless}}
-			{{/each}}
-		</ul>
+					{{/each}}
+				</ul >
+			</div>	
+			<div class="feed_no">
+				<h4>Not doing shit! :(</h4>
+				<hr>
+				<ul style="list-style: none;">
+					{{#each users}}
+						{{#unless going}}
+							<li><a href="profile/{{this._id}}">{{this.name}}</a></li>
+						{{/unless}}
+					{{/each}}
+				</ul>
+			</div>	
+		</div>
 	</div>
 </div>
 

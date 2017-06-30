@@ -19,12 +19,21 @@ h1{
 
 
 }
+
 #logo{
 
    max-width:8%;
    margin-top: 10px;
    margin-left: 5px;
   height:auto;
+}
+@media (max-width: 430px){
+
+  #logo{
+     max-width:30%;
+     margin-top: 25px;
+
+  }
 }
 .header_wrapper{
 
@@ -42,7 +51,7 @@ h1{
 
   display: flex;
     justify-content: center;
-  height: 160px;
+  height: 170px;
  background: url('../img/bgtile.png');
   background-repeat: repeat-x;
   font-family: 'Six Caps', sans-serif;
@@ -130,12 +139,13 @@ hr{
   text-align: center;
   text-decoration: none !important;
   list-style: none;
-  
+
 }
 ul{
 
   padding: 0px;
   margin: 0px;
+  margin-top: 5px;
   text-decoration: none;
   list-style: none;
 }
@@ -227,6 +237,20 @@ ul{
   flex-grow:1;
   border: 2px solid #EFEEEE;
   background-color: #EFEEEE;
+}
+
+.feed_wrapper{
+
+  display: flex;
+  flex-direction: row;
+}
+.feed_yes{
+  flex-grow: 1;
+
+}
+.feed_no{
+
+  flex-grow: 1; 
 }
 
 /* Hide default HTML checkbox */
