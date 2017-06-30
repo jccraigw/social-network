@@ -7,6 +7,12 @@ body {
 h1 {
   display: inline;
 }
+#logo {
+  max-width: 8%;
+  margin-top: 10px;
+  margin-left: 5px;
+  height: auto;
+}
 .header_wrapper {
   border-bottom: 6px solid #EFEEEE;
 }
@@ -18,7 +24,7 @@ h1 {
 .header {
   display: flex;
   justify-content: center;
-  height: 150px;
+  height: 160px;
   background: url('../img/bgtile.png');
   background-repeat: repeat-x;
   font-family: 'Six Caps', sans-serif;
@@ -30,6 +36,7 @@ h1 {
   vertical-align: middle;
   color: white;
   text-align: center;
+  font-size: 15px;
 }
 .wrapper {
   display: flex;
@@ -55,6 +62,25 @@ h4 {
   text-align: left;
   margin-left: 0px;
 }
+.profile_location {
+  float: right;
+  font-size: 20px;
+}
+.profile_title {
+  font-size: 20px;
+}
+#profile_pic {
+  margin-top: 10px;
+  border: 1px solid black;
+}
+hr {
+  background-color: #EFEEEE;
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  margin: 0px;
+  margin-top: 5px;
+}
 .activity {
   flex-grow: 1;
   text-align: center;
@@ -63,6 +89,7 @@ h4 {
 }
 ul {
   padding: 0px;
+  margin: 0px;
   text-decoration: none;
   list-style: none;
 }
@@ -120,10 +147,19 @@ a:active {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+  background-color: #EFEEEE;
+}
+.profile_col,
+li {
+  margin-left: 5px;
+}
+.divider {
+  flex-grow: 1;
 }
 .chat {
   flex-grow: 1;
   border: 2px solid #EFEEEE;
+  background-color: #EFEEEE;
 }
 /* Hide default HTML checkbox */
 .switch input {
